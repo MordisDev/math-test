@@ -1,6 +1,8 @@
 'use client'
 
 import { useState, useEffect } from "react"
+import { useSetAtom } from "jotai"
+import { resultsAtom } from "@/atoms/results"
 
 import { Button, type ButtonProps, Card, CardContent, Container, Stack, Typography } from "@mui/material"
 import { Equation } from "@/components/Equation"
@@ -40,6 +42,7 @@ const generateEquationsList = (): EquationType[] => {
 export default function MathTest() {
     const [equations, setEquations] = useState<EquationType[]>([])
     const [showResults, setShowResults] = useState(false)
+    const setGlobalResults = useSetAtom(resultsAtom)
 
     const buttonFormating: Partial<ButtonProps> = {
         size: "large",
@@ -61,7 +64,11 @@ export default function MathTest() {
         setShowResults(false);
     }
 
-    const calculateResults = (): string => `${((equations?.filter(equation => equation.isCorrect).length * 100)/equations?.length).toFixed()} %`
+    const calculateResults = (): string => {
+        const result = `${((equations?.filter(equation => equation.isCorrect).length * 100)/equations?.length).toFixed()} %`;
+        setGlobalResults(prev => [...prev, result])
+        return result
+    }
 
     return (
         <Container fixed sx={{my: 4}}>
