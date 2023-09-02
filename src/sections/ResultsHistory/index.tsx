@@ -15,7 +15,7 @@ export default function ResultsHistory() {
                     <Stack direction="row" useFlexGap spacing={2} flexWrap="wrap">
                         {resultArray.length ? (
                             resultArray.map((result, index) => (
-                                <Paper elevation={2} sx={{padding: 2, width: '160px'}}>
+                                <Paper key={index} elevation={2} sx={{padding: 2, width: '160px'}}>
                                     <Typography fontWeight="bold">Wynik {index + 1}: {result}</Typography>
                                 </Paper>
                             ))
