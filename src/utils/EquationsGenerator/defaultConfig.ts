@@ -5,7 +5,7 @@ const defaultConfig: GeneratorConfigProps = {
     maxParameterValue: 24,
     parametersAmount: 3,
     isParametersAmountStrict: false,
-    equationsType: ['+','-'],
+    equationsType: [{type: '+', ratio: 100},{type: '-', ratio: 0}],
     isPossibleNegativeResult: false,
     equationVariant: 'result',
 }

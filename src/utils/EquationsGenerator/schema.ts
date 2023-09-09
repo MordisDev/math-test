@@ -5,7 +5,7 @@ const equationGeneratorConfigSchema = z.object({
     maxParameterValue: z.number(),
     parametersAmount: z.number().gte(2).lte(5),
     isParametersAmountStrict: z.boolean(),
-    equationsType: z.array(z.enum(["+", "-"])),
+    equationsType: z.array(z.object({type: z.enum(["+","-"]), ratio: z.number().gte(0).lte(100)})),
     isPossibleNegativeResult: z.boolean(),
     equationVariant: z.enum(["result","missingParameter"]),
 });
