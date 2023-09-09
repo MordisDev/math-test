@@ -8,11 +8,16 @@ const equationsGenerator = ({
     maxParameterValue,
     parametersAmount,
     isParametersAmountStrict,
+    equationsType,
 }: GeneratorConfigProps): string[] => {
     function generateEquation(): string {
-        return Array.from(
+        const operatorsArray = equationsType.map(operator => Array(operator.ratio).fill(operator.type)).flat()
+
+        const parametersArray = Array.from(
             Array(isParametersAmountStrict ? parametersAmount : getRandomNumber(parametersAmount, 2)), () => getRandomNumber(maxParameterValue)
-        ).join(' + ')
+        )
+
+        return parametersArray.map((parameter, index) => index ? [operatorsArray[getRandomNumber(operatorsArray.length) - 1], parameter] : parameter).flat().join(' ')
     }
 
 
