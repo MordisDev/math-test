@@ -24,15 +24,3 @@ export const getEquations = (): string[] => {
     const currentConfig = defaultConfig;
     return equationsGenerator(currentConfig)
 }
-
-/**
- * const defaultConfig: GeneratorConfigProps = {
-    equationsAmount: 12,
-    maxParameterValue: 24,
-    parametersAmount: 3,
-    isParametersAmountStrict: false,
-    equationsType: ['+','-'],
-    isPossibleNegativeResult: false,
-    equationVariant: 'result',
-}
- */
