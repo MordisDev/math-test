@@ -9,31 +9,13 @@ import { Equation } from "@/components/Equation"
 
 import type { Equation as EquationType } from "@/types/Equation"
 
-import { getRandomNumber } from "@/utils/randomNumber"
-
-const equationSettings = {
-    ilosc: 24,
-    maksWartosc: 49,
-    liczbaParametrow: 2,
-    dopuszczalnaMniejszaIloscParametrow: true,
-    dzialania: ['+','-','*','/'],
-    wariant: 'wynik' || 'brakujacy parametr',
-    mozliweUjemne: false,
-    mozliweUlamki: false,
-    miejscaPoPrzecinku: 0,
-}
-
-const generateEquation = (length: number, operator: string): string => {
-    const parameters = Array.from(Array(equationSettings.dopuszczalnaMniejszaIloscParametrow ? getRandomNumber(length, 2) : length), () => getRandomNumber(equationSettings.maksWartosc))
-
-    return parameters.join(` ${operator} `)
-}
+import { getEquations } from "@/utils/EquationsGenerator"
 
 const generateEquationsList = (): EquationType[] => {
-    return Array.from({ length: equationSettings.ilosc }, (_, index) => (
+    return getEquations().map((equation, index) => (
         {
             id: index + 1,
-            equation: generateEquation(equationSettings.liczbaParametrow, '+'),
+            equation: equation,
             isCorrect: false,
         }
     ))
