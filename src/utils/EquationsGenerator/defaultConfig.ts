@@ -2,7 +2,7 @@ import { GeneratorConfigProps } from "./schema"
 
 const defaultConfig: GeneratorConfigProps = {
     equationsAmount: 16,
-    maxParameterValue: 200,
+    maxParameterValue: 99,
     parametersAmount: 3,
     isParametersAmountStrict: false,
     equationsType: [{type: '+', ratio: 90},{type: '-', ratio: 10}],
