@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from "react"
+import { GetServerSideProps } from "next"
 import { useSetAtom } from "jotai"
 import { resultsAtom } from "@/atoms/results"
 
@@ -11,7 +12,7 @@ import type { Equation as EquationType } from "@/types/Equation"
 
 import { getEquations } from "@/utils/EquationsGenerator"
 
-const generateEquationsList = (): EquationType[] => {
+const generateEquationsList = () => {
     return getEquations().map((equation, index) => (
         {
             id: index + 1,
@@ -21,8 +22,12 @@ const generateEquationsList = (): EquationType[] => {
     ))
 }
 
-export default function MathTest() {
-    const [equations, setEquations] = useState<EquationType[]>([])
+type MathTestProps = {
+    generatedEquations?: EquationType[]
+}
+
+export default function MathTest({ generatedEquations }: MathTestProps) {
+    const [equations, setEquations] = useState(generatedEquations ?? [])
     const [showResults, setShowResults] = useState(false)
     const setGlobalResults = useSetAtom(resultsAtom)
 
@@ -69,4 +74,16 @@ export default function MathTest() {
             </Card>
         </Container>
     )
+}
+
+export async function getServerSideProps() {
+    const generatedEquations = getEquations().map((equation, index) => (
+        {
+            id: index + 1,
+            equation: equation,
+            isCorrect: false,
+        }
+    ))
+
+    return { props: {equations: generatedEquations} }
 }

@@ -1,0 +1,8 @@
+.orderedList {
+    list-style-type: upper-roman;
+    margin: 2rem 3rem;
+}
+
+.orderedList ul {
+    margin-left: 1rem;
+}

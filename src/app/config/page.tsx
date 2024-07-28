@@ -1,3 +1,9 @@
+import EquarionsConfig from "@/sections/EquationsConfig"
+
 export default function Home() {
-    <h2>Config</h2>
+    return (
+        <main>
+            <EquarionsConfig />
+        </main>
+    )
 }
