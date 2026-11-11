@@ -1,14 +1,19 @@
-import MathTest from "@/sections/MathTest"
-import ResultsHistory from "@/sections/ResultsHistory"
+import MathTest from "@/sections/MathTest";
+import ResultsHistory from "@/sections/ResultsHistory";
+import { ConfigurationForm } from "@/components/ConfigurationForm";
+import { HydrationWrapper } from "@/utils/HydrationWrapper/HydrationWrapper";
 //import ThemeRegistry from '@/theme/ThemeRegistry'
 
 export default function Home() {
   return (
-    <main>
-      {/*<ThemeRegistry options={{ key: 'mui' }}>*/}
+    <HydrationWrapper>
+      <main>
+        {/*<ThemeRegistry options={{ key: 'mui' }}>*/}
         <MathTest />
         <ResultsHistory />
-      {/*</ThemeRegistry>*/}
-    </main>
-  )
+        {/*</ThemeRegistry>*/}
+        <ConfigurationForm />
+      </main>
+    </HydrationWrapper>
+  );
 }
